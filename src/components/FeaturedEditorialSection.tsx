@@ -1,5 +1,6 @@
 import React from 'react';
 import { Sparkles, Shield, Compass, Gem } from 'lucide-react';
+import { resolveImageUrl, handleImageError } from '../utils/imageUtils';
 
 export const FeaturedEditorialSection: React.FC = () => {
   return (
@@ -28,10 +29,11 @@ export const FeaturedEditorialSection: React.FC = () => {
           <div className="lg:col-span-7 relative group">
             <div className="aspect-[16/10] rounded-xl overflow-hidden border border-[#D4AF37]/30 bg-[#292524] shadow-2xl relative">
               <img
-                src="/src/assets/images/editorial_craftsmanship_1794478822428.jpg"
+                src={resolveImageUrl('/images/editorial_craftsmanship.webp')}
                 alt="Artisan handcrafting artificial polki jewellery at Jaldhara studio"
                 referrerPolicy="no-referrer"
                 loading="lazy"
+                onError={handleImageError}
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />

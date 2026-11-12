@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Heart, ShoppingBag, Eye, Edit3, Check } from 'lucide-react';
 import { Product } from '../types/jewellery';
+import { resolveImageUrl, handleImageError } from '../utils/imageUtils';
 
 interface ProductCardProps {
   product: Product;
@@ -52,10 +53,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* Visual media container */}
       <div className="relative aspect-square w-full overflow-hidden bg-[#F4EFE6] select-none">
         <img
-          src={product.image}
+          src={resolveImageUrl(product.image)}
           alt={product.name}
           referrerPolicy="no-referrer"
           loading="lazy"
+          onError={handleImageError}
           className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
 

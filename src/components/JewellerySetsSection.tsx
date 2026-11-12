@@ -2,6 +2,7 @@ import React from 'react';
 import { Crown, Sparkles, Gem } from 'lucide-react';
 import { Product } from '../types/jewellery';
 import { ProductCard } from './ProductCard';
+import { resolveImageUrl, handleImageError } from '../utils/imageUtils';
 
 interface JewellerySetsSectionProps {
   products: Product[];
@@ -43,9 +44,11 @@ export const JewellerySetsSection: React.FC<JewellerySetsSectionProps> = ({
         <div className="mb-12 bg-[#FDFBF7] rounded-xl border border-[#E2D8C9] p-6 sm:p-8 flex flex-col lg:flex-row items-center gap-8 shadow-sm">
           <div className="lg:w-1/2 aspect-[16/10] rounded-lg overflow-hidden relative shadow-inner bg-[#F4EFE6] w-full">
             <img
-              src="/src/assets/images/jewellery_set_heritage_1794478822284.jpg"
+              src={resolveImageUrl('/images/jewellery_set_heritage.webp')}
               alt="Rajwada Emerald Kundan Bridal Suite"
               referrerPolicy="no-referrer"
+              loading="lazy"
+              onError={handleImageError}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 jewellery-shine pointer-events-none" />

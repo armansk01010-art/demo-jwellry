@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, Heart, ShoppingBag, ShieldCheck, Sparkles, RefreshCw, Truck, Edit3, Check } from 'lucide-react';
 import { Product } from '../types/jewellery';
+import { resolveImageUrl, handleImageError } from '../utils/imageUtils';
 
 interface ProductModalProps {
   product: Product | null;
@@ -60,9 +61,10 @@ export const ProductModal: React.FC<ProductModalProps> = ({
         <div className="md:w-1/2 bg-[#F4EFE6] relative flex items-center justify-center p-6 sm:p-8 overflow-hidden">
           <div className="relative w-full aspect-square max-w-md rounded-lg overflow-hidden shadow-inner bg-white">
             <img
-              src={product.image}
+              src={resolveImageUrl(product.image)}
               alt={product.name}
               referrerPolicy="no-referrer"
+              onError={handleImageError}
               className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
             />
             <div className="absolute inset-0 jewellery-shine pointer-events-none" />

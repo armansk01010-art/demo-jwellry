@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, Sparkles, Gem, ShieldCheck } from 'lucide-react';
+import { resolveImageUrl, handleImageError } from '../utils/imageUtils';
 
 interface HeroSectionProps {
   onShopClick: () => void;
@@ -90,9 +91,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onShopClick }) => {
               {/* Main Campaign Image */}
               <div className="relative rounded-lg overflow-hidden shadow-2xl bg-[#F4EFE6] aspect-[16/11] anim-luxury-reveal group">
                 <img
-                  src="/src/assets/images/hero_jewellery_campaign_1794478819927.jpg"
+                  src={resolveImageUrl('/images/hero_jewellery_campaign.webp')}
                   alt="Jaldhara Royal Bridal Kundan Choker and Chandbali Earrings Campaign"
                   referrerPolicy="no-referrer"
+                  fetchPriority="high"
+                  loading="eager"
+                  onError={handleImageError}
                   className="w-full h-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-105"
                 />
 

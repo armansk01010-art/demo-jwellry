@@ -25,14 +25,20 @@ import { WishlistDrawer } from './components/WishlistDrawer';
 import { SearchModal } from './components/SearchModal';
 import { CheckoutModal } from './components/CheckoutModal';
 import { CheckCircle2, RotateCcw } from 'lucide-react';
+import { resolveImageUrl } from './utils/imageUtils';
 
 export default function App() {
-  // 1. Catalog State with editable demo prices
+  // 1. Catalog State with editable demo prices and sanitized image URLs
   const [products, setProducts] = useState<Product[]>(() => {
     const saved = localStorage.getItem('jaldhara_products');
     if (saved) {
       try {
-        return JSON.parse(saved);
+        const parsed: Product[] = JSON.parse(saved);
+        return parsed.map((p) => ({
+          ...p,
+          image: resolveImageUrl(p.image),
+          secondaryImage: p.secondaryImage ? resolveImageUrl(p.secondaryImage) : undefined,
+        }));
       } catch {
         return INITIAL_PRODUCTS;
       }
@@ -40,12 +46,20 @@ export default function App() {
     return INITIAL_PRODUCTS;
   });
 
-  // 2. Cart State
+  // 2. Cart State with sanitized image URLs
   const [cart, setCart] = useState<CartItem[]>(() => {
     const saved = localStorage.getItem('jaldhara_cart');
     if (saved) {
       try {
-        return JSON.parse(saved);
+        const parsed: CartItem[] = JSON.parse(saved);
+        return parsed.map((item) => ({
+          ...item,
+          product: {
+            ...item.product,
+            image: resolveImageUrl(item.product.image),
+            secondaryImage: item.product.secondaryImage ? resolveImageUrl(item.product.secondaryImage) : undefined,
+          },
+        }));
       } catch {
         return [];
       }

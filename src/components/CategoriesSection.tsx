@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { CategoryId } from '../types/jewellery';
+import { resolveImageUrl, handleImageError } from '../utils/imageUtils';
 
 interface CategoriesSectionProps {
   selectedCategory: CategoryId;
@@ -16,28 +17,28 @@ export const CategoriesSection: React.FC<CategoriesSectionProps> = ({
       id: 'earrings',
       name: 'Bestselling Earrings',
       subtitle: 'Jhumkas, Chandbalis, Studs & Hoops',
-      image: '/src/assets/images/earrings_bestseller_kundan_1794478820719.jpg',
+      image: '/images/earrings_bestseller_kundan.webp',
       tag: 'Primary Focus',
     },
     {
       id: 'sets',
       name: 'Jewellery Sets',
       subtitle: 'Complete Bridal Chokers & Ensembles',
-      image: '/src/assets/images/jewellery_set_heritage_1794478822284.jpg',
+      image: '/images/jewellery_set_heritage.webp',
       tag: 'Grand Ensembles',
     },
     {
       id: 'necklaces',
       name: 'Chokers & Necklaces',
       subtitle: 'Temple Motifs & Emerald Strands',
-      image: '/src/assets/images/product_ruby_temple_choker_1794478848051.jpg',
+      image: '/images/product_ruby_temple_choker.webp',
       tag: 'Regal Adornments',
     },
     {
       id: 'bangles',
       name: 'Bangles & Kadas',
       subtitle: 'Kundan Polki Openable Bracelets',
-      image: '/src/assets/images/product_bangles_kundan_1794478848780.jpg',
+      image: '/images/product_bangles_kundan.webp',
       tag: 'Imperial Cuffs',
     },
   ];
@@ -72,10 +73,11 @@ export const CategoriesSection: React.FC<CategoriesSectionProps> = ({
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#F0E9DD]">
                   <img
-                    src={cat.image}
+                    src={resolveImageUrl(cat.image)}
                     alt={cat.name}
                     referrerPolicy="no-referrer"
                     loading="lazy"
+                    onError={handleImageError}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />

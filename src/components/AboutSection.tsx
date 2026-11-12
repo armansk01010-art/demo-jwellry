@@ -1,5 +1,6 @@
 import React from 'react';
 import { Award, Feather, ShieldCheck, HeartHandshake } from 'lucide-react';
+import { resolveImageUrl, handleImageError } from '../utils/imageUtils';
 
 export const AboutSection: React.FC = () => {
   return (
@@ -83,9 +84,11 @@ export const AboutSection: React.FC = () => {
             <div className="relative mx-auto max-w-md lg:max-w-none">
               <div className="aspect-[4/3] rounded-xl overflow-hidden shadow-xl border border-[#D5CBBF] bg-[#F4EFE6] relative">
                 <img
-                  src="/src/assets/images/jewellery_set_heritage_1794478822284.jpg"
+                  src={resolveImageUrl('/images/jewellery_set_heritage.webp')}
                   alt="Jaldhara Jewellery presentation in atelier"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
+                  onError={handleImageError}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />

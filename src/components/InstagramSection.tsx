@@ -1,6 +1,7 @@
 import React from 'react';
 import { Instagram, Heart, MessageCircle, ExternalLink } from 'lucide-react';
 import { INSTAGRAM_POSTS } from '../data/catalogue';
+import { resolveImageUrl, handleImageError } from '../utils/imageUtils';
 
 export const InstagramSection: React.FC = () => {
   return (
@@ -44,10 +45,11 @@ export const InstagramSection: React.FC = () => {
               className="group relative aspect-square rounded-lg overflow-hidden bg-[#F0E9DD] border border-[#E7DFD5] shadow-xs block"
             >
               <img
-                src={post.image}
+                src={resolveImageUrl(post.image)}
                 alt={post.caption}
                 referrerPolicy="no-referrer"
                 loading="lazy"
+                onError={handleImageError}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
               />
 
