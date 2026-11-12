@@ -1,0 +1,6 @@
+{
+  "name": "Jaldhara — Premium Artificial Jewellery",
+  "description": "Exquisite artificial jewellery brand offering handcrafted Kundan earrings, royal bridal sets, antique temple chokers, and festive accessories.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
